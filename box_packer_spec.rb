@@ -43,4 +43,25 @@ describe '.pack' do
     expect(packings[0][:weight]).to eql(0.0)
     expect(packings[0][:placements].length).to eql(4)
   end
+
+
+  it 'has multiple containers' do
+    packings = BoxPacker.pack2(
+      containers: [
+        {dimensions: [12, 15, 10], weight_limit: 500, volume: 1800},
+        {dimensions: [15, 20, 13], weight_limit: 500, volume: 3900},
+        {dimensions: [17, 20, 13], weight_limit: 500, volume: 4420}
+      ],
+      items: [
+        { dimensions: [12, 13, 5], weight: 47, volume: 780 },
+        { dimensions: [2, 3, 5], weight: 47, volume: 30 },
+        { dimensions: [2, 3, 5], weight: 47, volume: 30 },
+        { dimensions: [2, 3, 5], weight: 47, volume: 30 },
+        { dimensions: [2, 3, 5], weight: 47, volume: 30 },
+        { dimensions: [13, 10, 2], weight: 24, volume: 260 },
+        { dimensions: [16, 1, 4], weight: 7, volume: 64 },
+      ]
+    )
+    puts packings.length
+  end
 end
